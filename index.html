@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Todo app</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+        body{
+            background-color: beige;
+        }
+        .container{
+            width: 800px;
+            height: 500px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            margin:20px auto;
+            background-color: white;
+            margin: 20px auto;
+            padding: 16px;
+        }
+        input{
+            width: 90%;
+            padding: 10px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        .inp-btn button{
+            width: 8%;
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #list li{
+           
+            background-color: hsl(321, 69%, 73%);
+            padding: 10px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        #list li i{
+            height: 50px;
+            position: absolute;
+            right: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .complete{
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="inp-btn">
+            <input id="inp" type="text">
+            <button>Add</button>
+        </div>
+
+        <ul id="list">
+            
+        </ul>
+    </div>
+
+    <script>
+        var inp = document.querySelector("#inp");
+        var btn = document.querySelector(".inp-btn button");
+        var list = document.querySelector("#list");
+
+        btn.addEventListener(
+            "click",
+            function (event){
+                if(inp.value == "") return alert("input type kre")
+
+                var li = document.createElement("li");
+                li.innerHTML = `<span>${inp.value}</span><i class="fa-solid fa-xmark"></i>`;
+                list.appendChild(li)
+                inp.value = ""
+            }
+        )
+
+        list.addEventListener(
+            "click",
+            function (event){
+                if(event.target.tagName === "I"){
+                    event.target.parentElement.remove()
+                }else if(event.target.tagName ==="SPAN"){
+                    event.target.parentElement.classList.toggle("complete")
+                }
+            }
+        )
+    </script>
+</body>
+</html>
